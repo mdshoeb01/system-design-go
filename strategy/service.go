@@ -23,6 +23,7 @@ func (s *strategyService) StartStrategyService() {
 
 }
 
+// factory can be used here to send the impl instance.
 func (s *strategyService) getValidation(name string) Validation {
 	if name == "CIL" {
 		return NewCILValidation(s.invoice)
