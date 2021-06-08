@@ -32,10 +32,5 @@ func (cil *cilValidation) RunValidation() []error {
 		errors = append(errors, err)
 	}
 
-	err = NewGrossAmtValidator(cil.invoice.GrossAmount).Validate()
-	if err != nil {
-		errors = append(errors, err)
-	}
-
 	return errors
 }

@@ -15,10 +15,16 @@ func NewStrategyService(invoice *Invoice) *strategyService{
 func (s *strategyService) StartStrategyService() {
 	log.Println("running strategy service")
 
-	invoiceType := "CIL"
+	invoiceType := "GE"
 
 	validationType := s.getValidation(invoiceType)
 	errs := validationType.RunValidation()
+	log.Println(errs)
+
+	invoiceType = "CIL"
+
+	validationType = s.getValidation(invoiceType)
+	errs = validationType.RunValidation()
 	log.Println(errs)
 
 }
@@ -29,6 +35,6 @@ func (s *strategyService) getValidation(name string) Validation {
 		return NewCILValidation(s.invoice)
 	} else {
 		// default validation impl
-		return nil
+		return NewDefaultValidation(s.invoice)
 	}
 }
